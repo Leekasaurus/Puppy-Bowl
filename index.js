@@ -75,14 +75,9 @@ const createNewPlayerForm = () => {
   }) 
 };
 
-// see details
-const detailsButton = playerElement.querySelector('.details-button');
-detailsButton.addEventListener('click', async (event) => {
-  // get the id
-  const playerId = event.target.dataset.id
-  // send id to renderSinglePartyById function
-  renderSinglePlayerById(playerId)
-});
+
+
+
 
 const removePlayer = async (playerId) => {
     try {
@@ -135,11 +130,32 @@ const renderAllPlayers = (playerList) => {
                 <button class="details-button" data-id="${party.id}">See Details</button>
                 <button class="delete-button" data-id="${party.id}">Delete</button>
             `;
-            playerContainer.appendChild(playerElement)
+            playerContainer.appendChild(playerElement);
         });;
-    } catch (err) {
-        console.error('Uh oh, trouble rendering players!', err);
-    }
+   
+// see details
+const detailsButton = playerElement.querySelector('.details-button');
+detailsButton.addEventListener('click', async (event) => {
+  // get the id
+  const playerId = event.target.dataset.id
+  // send id to renderSinglePartyById function
+  renderSinglePlayerById(playerId)
+});
+
+// delete pupper
+const deleteButton = playerElement.querySelector('.delete-button');
+deleteButton.addEventListener('click', async (event) => {
+  // get the id
+  const playerId = event.target.dataset.id
+  // pass the id to deleteParty function
+  deletePlayer(playerId)
+  // get it off the page
+  event.target.closest('div.party').remove()
+});
+
+} catch (error) {
+console.error(error);
+}
 };
 
 
