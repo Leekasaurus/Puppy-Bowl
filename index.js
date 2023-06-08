@@ -15,9 +15,12 @@ var  COHORT_ID = 479;
  */
 const fetchAllPlayers = async () => {
     try {
-
-    } catch (err) {
-        console.error('Uh oh, trouble fetching players!', err);
+        const response = await fetch(APIURL);
+        //console.log(response);
+        const players = await response.json();
+        return players;
+    } catch (error) {
+        console.error('Uh oh, trouble fetching players!', error);
     }
 };
 
