@@ -114,8 +114,21 @@ const removePlayer = async (playerId) => {
  * @returns the playerContainerHTML variable.
  */
 const renderAllPlayers = (playerList) => {
+    let playerContainer = document.querySelector(`#player-container`);
     try {
-        
+        playerContainer.innerHtml = '';
+        playerList.forEach((player) =>{
+            const playerElement = document.createElement('div');
+      playerElement.classList.add('party');
+      playerElement.innerHTML = `
+                <h2>${player.name}</h2>
+                <p>${player.breed}</p>
+                <p>${player.age}</p>
+                <button class="details-button" data-id="${party.id}">See Details</button>
+                <button class="delete-button" data-id="${party.id}">Delete</button>
+            `;
+            playerContainer.appendChild(playerElement)
+        });;
     } catch (err) {
         console.error('Uh oh, trouble rendering players!', err);
     }
