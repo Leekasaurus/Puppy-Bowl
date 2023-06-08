@@ -36,11 +36,45 @@ const fetchSinglePlayer = async (playerId) => {
 
 const addNewPlayer = async (playerObj) => {
     try {
-
+        const response = await fetch(APIURL, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
     } catch (err) {
         console.error('Oops, something went wrong with adding that player!', err);
     }
 };
+
+const createNewPlayerForm = () => {
+    const formHtml = `
+    
+    <form>
+      <label for="Name">Name</label>
+      <input type="text" name="name" id="name" />
+      <label for="Breed">Breed</label>
+      <input type="text" name="breed" id="breed" />
+      <label for="age">Age</label>
+      <input type="text" name="age" id="age" />
+      <button type="submit">Submit</button>
+    </form>
+  `;
+  newPlayerFormContainer.innerHtml = formHtml;
+
+  const form = newPlayerFormContainer.querySelector("form");
+  form.addEventListener("submit", async(event) => {
+    event.preventDefault();
+    let playerData = {
+        name: form.name.value,
+        imagae_url: form.imagae_url.value,
+        age: form.age.value,
+        breed: form.breed.value,
+    }
+  }) 
+};
+
 
 const removePlayer = async (playerId) => {
     try {
