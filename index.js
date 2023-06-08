@@ -75,6 +75,14 @@ const createNewPlayerForm = () => {
   }) 
 };
 
+// see details
+const detailsButton = playerElement.querySelector('.details-button');
+detailsButton.addEventListener('click', async (event) => {
+  // get the id
+  const playerId = event.target.dataset.id
+  // send id to renderSinglePartyById function
+  renderSinglePlayerById(playerId)
+});
 
 const removePlayer = async (playerId) => {
     try {
