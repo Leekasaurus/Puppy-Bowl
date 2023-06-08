@@ -78,11 +78,17 @@ const createNewPlayerForm = () => {
 
 const removePlayer = async (playerId) => {
     try {
-
-    } catch (err) {
+        const response = await fetch(`~${APIURL}/${id}`, {
+            method:"DELETE",
+        });
+        const player = await response.json();
+        console.log(player);
+        //reload the window
+        window.location.reload();
+    } catch (error) {
         console.error(
             `Whoops, trouble removing player #${playerId} from the roster!`,
-            err
+            error
         );
     }
 };
